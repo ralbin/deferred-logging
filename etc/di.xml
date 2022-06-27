@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package Mac_AsynLogger
+ * @author Russell Albin <russell@russellalbin.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Proxy classes for logger class-->
+    <type name="Mac\AsyncLogger\Model\AsyncLogger">
+        <arguments>
+            <argument name="publisher_proxy" xsi:type="object">Magento\Framework\MessageQueue\PublisherInterface\Proxy</argument>
+            <argument name="json_proxy" xsi:type="object">Magento\Framework\Serialize\Serializer\Json\Proxy</argument>
+            <argument name="cleanser_proxy" xsi:type="object">Mac\AsyncLogger\Model\Cleanser\Proxy</argument>
+        </arguments>
+    </type>
+    <!-- Replace core logger object to our custom logger for below two classes -->
+     <type name="Mac\AsyncLogger\Model\AsyncLogger">
+        <arguments>
+            <argument name="logger" xsi:type="object">MacCustomLogger</argument>
+        </arguments>
+    </type>
+     <type name="Mac\AsyncLogger\Model\Queue\Handler">
+        <arguments>
+            <argument name="logger" xsi:type="object">MacCustomLogger</argument>
+        </arguments>
+    </type>
+    <!-- Creating handlers file -->
+     <type name="Mac\AsyncLogger\Model\Handlers\FileDebug">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <virtualType name="MacCustomLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">MacLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Mac\AsyncLogger\Model\Handlers\FileDebug</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Request and Response Logger -->
+    <type name="Magento\Webapi\Controller\Rest">
+        <plugin name="rest_api_request_logging"
+                type="Mac\AsyncLogger\Plugin\RestLog"/>
+    </type>
+    <type name="Magento\Framework\Webapi\Rest\Response">
+        <plugin name="rest_api_response_logging"
+                type="Mac\AsyncLogger\Plugin\RestLog"/>
+    </type>
+</config>

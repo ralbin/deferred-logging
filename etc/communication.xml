@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @package Mac_AsynLogger
+ * @author Russell Albin <russell@russellalbin.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="asynclogger" request="string" response="string">
+        <handler name="asynclogger.handler" type="Mac\AsyncLogger\Model\Queue\Handler\Handler" method="execute"/>
+    </topic>
+</config>

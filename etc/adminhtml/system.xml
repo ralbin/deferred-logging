@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @package Mac_AsynLogger
+ * @author Russell Albin <russell@russellalbin.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="Mac" translate="label" sortOrder="999">
+			<label>Mac</label>
+		</tab>
+		<section id="logger" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+			<label>Logger</label>
+			<tab>Mac</tab>
+			<resource>Mac_AsyncLogger::config_Mac_logger</resource>
+			<group id="general" sortOrder="10" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+				<label>General</label>
+				<field id="debug" type="select" sortOrder="10" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+					<label>Debug</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+				</field>
+                <field id="debuglevel" type="multiselect" sortOrder="15" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+					<label>Debug Level</label>
+					<comment>Generate Debug Level</comment>
+					<source_model>Mac\AsyncLogger\Model\Config\Debuglevel</source_model>
+				</field>
+                  <field id="debugengine" type="select" sortOrder="17" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+					<label>Debug Engine</label>
+					<source_model>Mac\AsyncLogger\Model\Config\Debugengine</source_model>
+				</field>
+				<field id="test_mode" type="select" sortOrder="20" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+					<label>Test Mode</label>
+					<comment>If we enable it will print sensitive data also in log file</comment>
+					<source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+				</field>
+				<field id="privatekeys" type="textarea" sortOrder="30" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
+					<label>Private Keys</label>
+					<comment>comma seprated private fields</comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

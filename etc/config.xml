@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * @package Mac_AsynLogger
+ * @author Russell Albin <russell@russellalbin.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<logger>
+			<general>
+				<debug>0</debug>
+                <debuglevel>error,warning,info,alert,debug,critical</debuglevel>
+                <debugengine>direct</debugengine>
+				<test_mode>0</test_mode>
+				<privatekeys>password,shared_secret,secret,_secret,date_of_birth,firstname,lastname,email,phone,telephone</privatekeys>
+			</general>
+		</logger>
+	</default>
+</config>

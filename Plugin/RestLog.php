@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Mac_AsynLogger
+ * @package Mac_AsyncLogger
  * @author Russell Albin <russell@russellalbin.com>
  */
 declare(strict_types=1);

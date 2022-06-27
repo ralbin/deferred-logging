@@ -38,7 +38,7 @@
 				</field>
 				<field id="privatekeys" type="textarea" sortOrder="30" showInWebsite="1" showInStore="0" showInDefault="1" translate="label">
 					<label>Private Keys</label>
-					<comment>comma seprated private fields</comment>
+					<comment>comma separated private fields</comment>
 				</field>
 			</group>
 		</section>
